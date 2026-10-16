@@ -18,6 +18,9 @@ server {
         fastcgi_param HTTP_REMOTE_USER {{ .grocy_user }};
         {{ end }}
 
+        fastcgi_param HTTP_X_INGRESS_PATH $http_x_ingress_path;
+        fastcgi_param HTTP_AUTHORIZATION $http_authorization;
+
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include /etc/nginx/includes/fastcgi_params.conf;
     }
