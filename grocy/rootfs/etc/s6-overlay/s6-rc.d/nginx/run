@@ -5,7 +5,15 @@
 # ==============================================================================
 
 # Wait for PHP-FPM to become available
-bashio::net.wait_for 9002
+while [ ! -S /var/run/php82-fpm-ingress.sock ]; do
+    sleep 1
+done
+
+if bashio::var.has_value "$(bashio::addon.port 80)"; then
+    while [ ! -S /var/run/php82-fpm-www.sock ]; do
+        sleep 1
+    done
+fi
 
 bashio::log.info "Starting NGinx...."
 

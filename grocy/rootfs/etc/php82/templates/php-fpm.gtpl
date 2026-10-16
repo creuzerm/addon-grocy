@@ -1,7 +1,10 @@
 [{{ .name }}]
 user = root
 group = root
-listen = 127.0.0.1:{{ .port }}
+listen = /var/run/php82-fpm-{{ .name }}.sock
+listen.owner = root
+listen.group = root
+listen.mode = 0660
 pm = dynamic
 pm.max_children = 10
 pm.start_servers = 3

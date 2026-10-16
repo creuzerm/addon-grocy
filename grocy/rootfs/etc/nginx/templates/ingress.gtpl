@@ -7,7 +7,7 @@ server {
     deny    all;
 
     location ~ .php$ {
-        fastcgi_pass 127.0.0.1:9002;
+        fastcgi_pass unix:/var/run/php82-fpm-ingress.sock;
         fastcgi_read_timeout 900;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_index index.php;
